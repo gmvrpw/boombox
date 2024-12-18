@@ -5,8 +5,8 @@ This example uses the boombox infrastructure to create a discord bot with the ab
 Specify Discord API token in `secrets/discord_bot_token`
 
 ## Configuration 
-1. Boombox-Core configuration file is located in boombox_core.yml. Check [reference](https://github.com/gmvrpw/boombox-core​​​​​​​) for more details.
-2. Boombox-Web-Runner configuration file is located in boombox_web_runner.yml. Check [reference](​​​​​​​https://github.com/gmvrpw/boombox-web-runner) for more details.
+1. Boombox-Core configuration file is located in boombox_core.yml. Check [reference](https://github.com/gmvrpw/boombox-core) for more details.
+2. Boombox-Web-Runner configuration file is located in boombox_web_runner.yml. Check [reference](https://github.com/gmvrpw/boombox-web-runner) for more details.
 
 ## Run
 1. Install [Docker](https://www.docker.com) and [Docker Compose](https://docs.docker.com/compose)
