@@ -3,7 +3,7 @@ This repository contains examples of ready-made solutions for audio playback in 
 as well as general information about our infrastructure and the principles we follow in developing this project.
 
 ## Examples 
-1. Discord Audio Player - Host your own Discord audio player. 
+1. [Discord Audio Player](examples/discord-audio-player) - Host your own Discord audio player. 
 
 ## Scheme of work
 ![Structure Scheme](assets/scheme.svg)
