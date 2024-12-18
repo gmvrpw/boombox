@@ -1,0 +1,58 @@
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_DB_FILE: /run/secrets/postgres_db 
+    secrets:
+      - postgres_user
+      - postgres_password
+      - postgres_db
+
+  boombox-web-runner-1:
+    build: ./boombox-web-runner
+    restart: always
+    environment:
+      BOOMBOX_WEB_RUNNER_CONFIG_FILE: /etc/boombox-web-runner/config.yml
+    volumes:
+      - type: bind 
+        source: boombox_web_runner.yml
+        target: /etc/boombox-web-runner/config.yml
+
+  boombox:
+    build: ./boombox-core
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_started
+      boombox-web-runner-1:
+        condition: service_started
+    environment:
+      BOOMBOX_CONFIG_FILE: /etc/boombox/config.yml 
+      BOOMBOX_DISCORD_BOT_TOKEN_FILE: /run/secrets/discord_bot_token
+      BOOMBOX_REQUESTS_POSTGRES_USER_FILE: /run/secrets/postgres_user
+      BOOMBOX_REQUESTS_POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      BOOMBOX_REQUESTS_POSTGRES_DB_FILE: /run/secrets/postgres_db 
+    volumes:
+      - type: bind 
+        source: boombox_core.yml
+        target: /etc/boombox/config.yml
+    secrets:
+      - discord_bot_token
+      - postgres_user
+      - postgres_password
+      - postgres_db
+
+secrets:
+  discord_bot_token:
+    file: ./secrets/discord_bot_token
+  postgres_user:
+    file: ./secrets/postgres_user
+  postgres_password:
+    file: ./secrets/postgres_password
+  postgres_db:
+    file: ./secrets/postgres_db
+
+

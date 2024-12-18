@@ -1,0 +1,5 @@
+requests:
+  url: postgresql://postgres:5432
+runners:
+  - name: "boombox-web-runner-1"
+    url: "http://boombox-web-runner-1:3000"

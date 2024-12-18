@@ -1,0 +1,22 @@
+entrypoints:
+  http:
+    port: 3000 
+modules:
+  - name: music.yandex.ru
+    auth:
+      name: "Session_id"
+      domain: ".yandex.ru"
+    test: "https://music.yandex.ru/album/[0-9]+/track/[0-9]+"
+    playback: 
+      selector: ".progress__left"
+    duration:
+      selector: ".progress__right"
+    play:
+      selector: ".sidebar__controls button.button-play"
+  - name: music.youtube.com
+    test: 'https:\/\/music\.youtube.com\/watch\?v=[a-zA-z0-9]+?.*'
+    playback:
+      selector: ".current-time.style-scope.ytmusic-player-controls"
+    duration:
+      selector: ".total-time.style-scope.ytmusic-player-controls"
+
